@@ -1,0 +1,4 @@
+TODO:
+
+-Method.py
+    - Add __init__.py file so python recognizes the formula
