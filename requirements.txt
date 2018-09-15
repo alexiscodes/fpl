@@ -77,6 +77,7 @@ google-api-python-client==1.6.4
 greenlet==0.4.11
 gspread==0.6.2
 gspread-dataframe==2.1.0
+gunicorn==19.9.0
 h5py==2.6.0
 HeapDict==1.0.0
 httplib2==0.10.3
