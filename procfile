@@ -1,1 +1,1 @@
-web: gunicorn fpl-api-heroku:fpl_website
+web: gunicorn fpl_website:app
