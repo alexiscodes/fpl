@@ -175,7 +175,7 @@ def get_tuples(df, max_number, value_sort):
 
 
 # 
-# 
+
 
 
 
