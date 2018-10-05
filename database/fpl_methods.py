@@ -89,7 +89,6 @@ def get_all_data():
 
     # Rename columns
     player_df.columns = datapoints
-    player_df['element_type']-=1
 
 
     #Join DataFrames
