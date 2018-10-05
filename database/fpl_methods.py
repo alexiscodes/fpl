@@ -69,7 +69,7 @@ def get_all_data():
         position_list.append(position_dump[pos])
     
     pos_df = pd.DataFrame(position_list)
-    pos_df.rename(columns={'id': 'elemet_type'}, inplace=True)  
+    pos_df.rename(columns={'id': 'element_type'}, inplace=True)  
 
     # Overall stats
     dump = requests.get('https://fantasy.premierleague.com/drf/bootstrap')
@@ -93,8 +93,8 @@ def get_all_data():
 
 
     #Join DataFrames
-    combined_df_first = player_df.join(team_df, on='team_code', how='inner', lsuffix='_left', rsuffix='_right')
-    combined_df = combined_df_first.join(pos_df, on='element_type', how='left')
+    combined_df_first = pd.merge(player_df, team_df, on='team_code', how='inner')
+    combined_df = pd.merge(combined_df_first, pos_df, on='element_type', how='left')
     return combined_df
 
 # In[13]:
