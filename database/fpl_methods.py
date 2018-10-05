@@ -47,8 +47,55 @@ def get_players():
     return player_df
 
 
+def get_all_data():
+    dump = requests.get('https://fantasy.premierleague.com/drf/teams')
+    load = dump.text
+    team_dump = json.loads(load)
+    team_list = []
 
-# # Get Positions
+    for team in range(0, len(team_dump)):
+        team_list.append(team_dump[team])
+    
+    team_df = pd.DataFrame(team_list)
+    team_df.rename(columns={'code': 'team_code', 'name': 'team_name'}, inplace=True)
+
+    # Position Data
+    dump = requests.get('https://fantasy.premierleague.com/drf/element-types')
+    load = dump.text
+    position_dump = json.loads(load)
+    position_list = []
+
+    for pos in range(0, len(position_dump)):
+        position_list.append(position_dump[pos])
+    
+    pos_df = pd.DataFrame(position_list)
+    pos_df.rename(columns={'id': 'elemet_type'}, inplace=True)  
+
+    # Overall stats
+    dump = requests.get('https://fantasy.premierleague.com/drf/bootstrap')
+    load = dump.text
+    json_dump = json.loads(load)  
+    datapoints = ['id', 'web_name', 'first_name', 'total_points', 'event_points', 'now_cost','cost_change_start', 
+              'selected_by_percent', 'form','ep_next', 'team_code', 'element_type',
+              'chance_of_playing_next_round','minutes', 'bonus', 'goals_scored', 'assists', 'clean_sheets', 
+              'goals_conceded', 'bps', 'influence', 'creativity', 'threat', 'ict_index', 'ea_index', 'news']
+    player_list = []
+
+    for player in range(0, len(json_dump['elements'])):
+        stats = [json_dump['elements'][player][x] for x in datapoints]
+        player_list.append(stats)
+    
+    player_df = pd.DataFrame(player_list)
+
+    # Rename columns
+    player_df.columns = datapoints
+    player_df['element_type']-=1
+
+
+    #Join DataFrames
+    combined_df_first = player_df.join(team_df, on='team_code', how='inner', lsuffix='_left', rsuffix='_right')
+    combined_df = combined_df_first.join(pos_df, on='element_type', how='left')
+    return combined_df
 
 # In[13]:
 

@@ -4,13 +4,13 @@ from flask import Flask
 from flask import render_template
 
 #Get formulas
-from database.fpl_methods import get_players
+from database.fpl_methods import get_all_data
 
 app = Flask(__name__)
 
 @app.route("/")
 def get_news():
-    players = get_players()  
+    players = get_all_data()  
     return render_template('tables.html',tables=[players.to_html()], titles = ['players'], classes='players')
 
 if __name__ == '__main__':
