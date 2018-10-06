@@ -1,4 +1,9 @@
 TODO:
 
+Source:
+https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
+
 -Method.py
     - Add __init__.py file so python recognizes the formula
+    - Add a shebang at start of every script
+    - When importing from other modules, write 'from .folder.script import formula'
