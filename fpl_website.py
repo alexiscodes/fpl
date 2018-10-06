@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# coding: utf-8 
 
 #takes Jinja template as input and produces pure HTML as output
 
@@ -14,7 +16,7 @@ from flask_heroku import Heroku
 import os
 
 #Get formulas
-from .database.fpl_methods import get_all_data
+from database.fpl_methods import get_all_data
 
 app = Flask(__name__)
 

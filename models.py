@@ -1,4 +1,4 @@
-from .fpl_website import db
+from fpl_website import db
 from sqlalchemy.dialects.postgresql import JSON
 
 #https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
