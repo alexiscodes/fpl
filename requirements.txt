@@ -2,7 +2,7 @@ alembic==1.0.11
 certifi==2019.6.16
 chardet==3.0.4
 Click==7.0
-Django==2.2.3
+Django==2.2.27
 Flask==1.1.1
 flask-heroku==0.1.9
 Flask-Migrate==2.5.2
